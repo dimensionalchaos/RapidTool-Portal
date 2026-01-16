@@ -21,6 +21,7 @@ export interface Tool {
 const MainPortal: React.FC = () => {
   const navigate = useNavigate();
   const { user, fetchCurrentUser } = useAuthStore();
+  const FIXTURE_APP_URL = (import.meta as any).env?.VITE_FIXTURE_APP_URL || 'http://localhost:8080';
 
   useEffect(() => {
     if (!user) {
@@ -73,7 +74,7 @@ const MainPortal: React.FC = () => {
           <div className="flex flex-wrap justify-start gap-4 pt-4">
             <button
               className="rounded-full px-8 h-12 text-sm font-bold bg-[#2596be] text-white hover:opacity-90 shadow-md shadow-blue-100 transition-all"
-              onClick={() => navigate('/app/fixture')}
+              onClick={() => window.location.href = FIXTURE_APP_URL}
             >
               Try RapidTool Fixtures
             </button>
@@ -128,7 +129,7 @@ const MainPortal: React.FC = () => {
                         size="sm"
                         className="w-full font-bold text-[11px] h-9 rounded-lg bg-slate-900 hover:bg-[#2596be]"
                         disabled={tool.status !== 'Active'}
-                        onClick={() => tool.path && navigate(tool.path)}
+                        onClick={() => tool.path && (window.location.href = FIXTURE_APP_URL)}
                       >
                         {tool.status === 'Active' ? (
                           <>Open Tool <ExternalLink className="ml-1.5 h-3 w-3" /></>

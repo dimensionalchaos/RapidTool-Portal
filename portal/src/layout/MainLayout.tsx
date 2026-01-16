@@ -29,7 +29,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const handleLogout = async () => {
     await logout();
     setIsAccountSettingsOpen(false);
-    navigate('/auth/login');
+    // Redirect to the frontend app login page
+    window.location.href = 'http://localtest.me:8080/auth/login';
   };
 
   return (
